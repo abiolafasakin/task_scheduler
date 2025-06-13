@@ -40,3 +40,17 @@ add_task() {
   echo "Task scheduled successfully."
   echo
 }
+
+add_task
+
+# Function to remove a task
+remove_task() {
+  read -p "Enter the command or script to be removed: " command
+
+  # Remove the task from the crontab
+  crontab -l | grep -v "$command" | crontab -
+
+  echo "Task removed successfully."
+  echo
+}
+
