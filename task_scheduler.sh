@@ -10,9 +10,11 @@ list_tasks() {
 # Function to add a new task
 add_task() {
   read -p "Enter the command or script to be executed: " command
-  read -p "Enter the schedule (hourly, daily, weekly): " schedule
+  read -p "Enter the schedule ('hourly', 'daily', 'weekly'): " schedule
   read -p "Enter any additional parameters: " parameters
 
+  #Based on the user's input for the schedule, the function assigns a 
+  #corresponding cron expression
   case $schedule in
     hourly)
       cron_schedule="0 * * * *"
@@ -24,7 +26,7 @@ add_task() {
       cron_schedule="0 0 * * 0"
       ;;
     *)
-      echo "Invalid schedule. Please choose hourly, daily, or weekly."
+      echo "Invalid schedule. Please enter 'hourly', 'daily', or 'weekly'."
       return
       ;;
   esac
